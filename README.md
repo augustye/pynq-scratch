@@ -20,7 +20,7 @@ sudo python3 server_pc.py
 ```
 * you may need to change the pynq ip address in server_pc.py first
 
-Run Scratch 3.0 on PC:
-----------------------
+Run Scratch 3.0 in Browser:
+---------------------------
 1. open https://machinelearningforkids.co.uk/scratch3/?url=http://127.0.0.1:8888/static/test.js
 2. you will find the "led on/off" block in "New Blocks" section
