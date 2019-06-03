@@ -1,7 +1,7 @@
 # pynq-scratch
 PYNQ-Z2 board + Scratch 3.0
 
-Start web server on PYNQ-Z2 board:
+Start python server on PYNQ-Z2 board:
 ----------------------------------
 ```Bash
 sudo pip3 install flask
@@ -10,8 +10,8 @@ cd pynq-scratch
 sudo python3 server_pynq.py
 ```
 
-Start web server on PC:
------------------------
+Start python server on PC:
+--------------------------
 ```Bash
 sudo pip3 install flask
 git clone https://github.com/augustye/pynq-scratch
