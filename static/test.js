@@ -39,8 +39,8 @@ function sendLedCommand(status, callback) {
     var url = new URL('http://127.0.0.1:8888/led');
     url.searchParams.append('status', status);
     fetch(url).then((response) => {
-        console.log("sendLedCommand response:", response);
-        return callback(response);
+        //console.log("sendLedCommand response:", response);
+        return callback("done");
     })
 }
 
