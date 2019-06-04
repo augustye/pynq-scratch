@@ -8,7 +8,7 @@ sudo pip3 install flask
 git clone https://github.com/augustye/pynq-scratch
 cd pynq-scratch
 #kill jupyter-notebook to release port 80
-pkill -f jupyter-notebook 
+sudo pkill -f jupyter-notebook 
 sudo python3 server.py
 ```
 
