@@ -7,8 +7,8 @@ Start python server on PYNQ-Z2 board:
 sudo pip3 install flask
 git clone https://github.com/augustye/pynq-scratch
 cd pynq-scratch
-#kill jupyter-notebook to release port 80
-sudo pkill -f jupyter-notebook 
+#release port 80
+sudo pkill -f redirect_server
 sudo python3 server.py
 ```
 
