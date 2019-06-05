@@ -11,8 +11,13 @@ class Scratch3NewBlocks {
                 {
                     opcode: 'ledControl',
                     blockType: Scratch.BlockType.COMMAND,
-                    text: 'led [STATUS]',
+                    text: 'led [INDEX] [STATUS]',
                     arguments: {
+                        INDEX: {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: "1",
+                            menu: 'indexes'
+                        },
                         STATUS: {
                             type: Scratch.ArgumentType.STRING,
                             defaultValue: "0",
@@ -22,6 +27,11 @@ class Scratch3NewBlocks {
                 }
             ],
             menus: {
+                indexes: [
+                    { value : '1', text : '1'},
+                    { value : '2', text : '2' },
+                    { value : '3', text : '3' },
+                ],
                 statuses: [
                     { value : '0', text : 'off'},
                     { value : '1', text : 'on' },
@@ -30,13 +40,14 @@ class Scratch3NewBlocks {
         };
     }
 
-    ledControl({ STATUS }) {
-        return new Promise(resolve => sendLedCommand(STATUS, resolve));
+    ledControl({ INDEX, STATUS }) {
+        return new Promise(resolve => sendLedCommand(INDEX, STATUS, resolve));
     }
 }
 
-function sendLedCommand(status, callback) {
+function sendLedCommand(index, status, callback) {
     var url = new URL('{{url_root}}' + 'led');
+    url.searchParams.append('index', index);
     url.searchParams.append('status', status);
     fetch(url).then((response) => {
         //console.log("sendLedCommand response:", response);

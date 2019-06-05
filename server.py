@@ -16,13 +16,15 @@ def extension_led():
 
 @app.route('/led')
 def led():
-  status = 1 if request.args.get('status') == "1" else 0
+  status = int(request.args.get('status')) 
+  index  = int(request.args.get('index')) - 1
   print("status:", status)
+  print("index:", index)
   if pynq is None:
     #with urllib.request.urlopen(url) as response:
     pass
   else:
-    pynq_overlay.rgbleds_gpio[1].write(status)
+    pynq_overlay.rgbleds_gpio[index].write(status)
   return jsonify(status)
 
 @app.after_request
