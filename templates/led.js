@@ -1,12 +1,12 @@
-class Scratch3NewBlocks {
+class LED {
     constructor (runtime) {
         this.runtime = runtime;
     }
 
     getInfo () {
         return {
-            id: 'newblocks',
-            name: 'New Blocks',
+            id: 'led',
+            name: 'LED',
             blocks: [
                 {
                     opcode: 'ledControl',
@@ -55,4 +55,4 @@ function sendLedCommand(index, status, callback) {
     })
 }
 
-Scratch.extensions.register(new Scratch3NewBlocks());
+Scratch.extensions.register(new LED());

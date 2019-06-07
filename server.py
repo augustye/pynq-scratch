@@ -8,9 +8,9 @@ try:
 except ImportError:
     pynq = None
 
-@app.route('/extension/led')
-def extension_led():
-  resp = make_response(render_template('test.js', url_root=request.url_root))
+@app.route('/extension/<name>')
+def extension_led(name):
+  resp = make_response(render_template(name + '.js', url_root=request.url_root))
   resp.headers['Content-type'] = 'application/javascript'
   return resp
 
@@ -26,6 +26,10 @@ def led():
   else:
     pynq_overlay.rgbleds_gpio[index].write(status)
   return jsonify(status)
+
+@app.route('/mnist')
+def mnist():
+  return 5;
 
 @app.after_request
 def after_request(response):
