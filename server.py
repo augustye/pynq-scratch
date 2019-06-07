@@ -1,5 +1,6 @@
 from flask import Flask,request,jsonify,render_template,make_response
 import urllib.request
+import base64
 
 app = Flask(__name__)
 try:
@@ -27,9 +28,14 @@ def led():
     pynq_overlay.rgbleds_gpio[index].write(status)
   return jsonify(status)
 
-@app.route('/mnist')
+@app.route('/mnist', methods = ['POST'])
 def mnist():
-  return 5;
+  img_data = request.get_json().get('data')
+  if pynq is None:
+      return jsonify({"error":"Error: pynq is not found"})
+  with open("imageToSave.png", "wb") as fh:
+    status = fh.write(base64.b64decode(img_data))
+  return jsonify(status)
 
 @app.after_request
 def after_request(response):

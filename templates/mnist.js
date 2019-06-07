@@ -8,10 +8,7 @@ class MNIST {
                 {
                     opcode: 'label',
                     blockType: Scratch.BlockType.REPORTER,
-                    text: {
-                        default: 'recognise image [IMAGE] (label)',
-                        id: 'mlforkids.images.recogniseLabel'
-                    },
+                    text: 'recognise image [IMAGE] (label)',
                     arguments: {
                         IMAGE: {
                             type: Scratch.ArgumentType.STRING,
@@ -48,34 +45,20 @@ function getImageClassificationResponse(imagedata, callback) {
 
     fetch(url, options).then((response) => {
         if (response.status === 200 || response.status === 400) {
-            response.json().then((responseJson) => {
-                if (response.status === 200 && responseJson && responseJson.length > 0) {
-                    // we got a result from the classifier
-                    return callback(responseJson[0]);
-                }
-
-                callback({
-                    class_name: 'Unknown',
-                    confidence: 0,
-                });
+            response.json().then((result) => {
+                if (response.status === 200 && result) 
+                    return callback(result.class || result.error);
+                callback('Unknown');
             });
         }
         else {
-            console.log(response);
-
-            callback({
-                class_name: 'Unknown',
-                confidence: 0,
-            });
+            console.log("response:", response);
+            callback('Unknown');
         }
     })
     .catch((err) => {
-        console.log(err);
-
-        callback({
-            class_name: 'Unknown',
-            confidence: 0,
-        });
+        console.log("err:", err);
+        callback('Unknown');
     });
 }
 
