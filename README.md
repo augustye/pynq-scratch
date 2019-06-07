@@ -19,4 +19,4 @@ Run Scratch 3.0 in Browser:
 1. open scratch: (replace 192.168.3.107 with the ip address of your pynq board)
    - option 1: http://scratch.augustye.net/?url=http://192.168.3.107/extension/led
    - option 2: http://192.168.3.107/static/scratch3/index.html?url=http://192.168.3.107/extension/led
-2. you will find the "led on/off" block in "New Blocks" section
+2. you will find the "led on/off" block in "LED" section
