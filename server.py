@@ -67,7 +67,7 @@ def mnist():
   with open('/tmp/mnist_processed', 'wb') as file:
     data_image.tofile(file)  
   result = mnist_classifier.classify_mnist('/tmp/mnist_processed')
-  return jsonify({"class":result})
+  return jsonify({"class":str(result)})
 
 @app.after_request
 def after_request(response):
