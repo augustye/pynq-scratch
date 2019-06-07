@@ -4,6 +4,7 @@ PYNQ-Z2 board + Scratch 3.0
 Start python server on PYNQ-Z2 board:
 ----------------------------------
 ```Bash
+#sudo pip3 install git+https://github.com/Xilinx/PYNQ.git
 sudo pip3 install git+https://github.com/Xilinx/BNN-PYNQ.git
 sudo pip3 install flask
 git clone https://github.com/augustye/pynq-scratch
