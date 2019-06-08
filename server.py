@@ -38,8 +38,6 @@ def led():
 
 @app.route('/mnist', methods = ['POST'])
 def mnist():
-  if pynq is None:
-    return jsonify({"error":"Error: pynq is not found"})
   img_data = request.get_json().get('data')
   img_data = base64.b64decode(img_data)
   img = Image.open(io.BytesIO(img_data))
@@ -59,6 +57,10 @@ def mnist():
       smallimg.paste(img, (int((28-img.size[0])/2),int((28-img.size[1])/2)))  
   smallimg = ImageOps.invert(smallimg).convert("L")  
   #smallimg.save("smallimg.png")
+
+  if pynq is None:
+    return jsonify({"error":"Error: pynq is not found"})
+
   data_image = array('B', [0, 0, 8, 3, 0, 0, 0, 1, 0, 0, 0, 28, 0, 0, 0, 28])
   pixel = smallimg.load()  
   for x in range(0,28):  
